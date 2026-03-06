@@ -1,29 +1,27 @@
-Binance Futures Testnet Trading Bot
+# Binance Futures Testnet Trading Bot
 
-A simple Python CLI trading bot that places MARKET and LIMIT orders on the Binance Futures Testnet.
-This project was developed as part of the Python Developer Intern application task.
+A simple Python CLI trading bot that places **MARKET** and **LIMIT** orders on the Binance Futures Testnet. This project was developed as part of the Python Developer Intern application task.
 
 The application provides a structured and reusable codebase with input validation, logging, and error handling.
 
-Features
+---
 
-Place MARKET orders
+## Features
 
-Place LIMIT orders
+- Place MARKET orders
+- Place LIMIT orders
+- Supports BUY and SELL sides
+- CLI-based user input
+- Input validation for order parameters
+- Logging of API requests and responses
+- Exception handling for API and input errors
+- Modular project structure
 
-Supports BUY and SELL
+---
 
-CLI-based user input
+## Project Structure
 
-Input validation for order parameters
-
-Logging of API requests and responses
-
-Exception handling for API and input errors
-
-Modular project structure
-
-Project Structure
+```
 trading_bot/
 │
 ├── bot/
@@ -38,124 +36,163 @@ trading_bot/
 ├── README.md               # Project documentation
 ├── .env                    # API credentials (not committed)
 └── trading_bot.log         # Generated log file
-Architecture
+```
 
-The project follows a simple modular architecture:
+---
 
+## Architecture
+
+```
 CLI Layer → Order Service → Binance Client
+```
 
-CLI Layer (cli.py)
-Handles user input through command-line arguments.
+| Layer | File | Responsibility |
+|---|---|---|
+| CLI Layer | `cli.py` | Handles user input through command-line arguments |
+| Order Service | `orders.py` | Contains the logic for placing orders |
+| Client Wrapper | `client.py` | Manages connection to the Binance Futures Testnet API |
+| Validators | `validators.py` | Ensures user inputs are valid before sending API requests |
+| Logging | `logging_config.py` | Logs API requests, responses, and errors |
 
-Order Service (orders.py)
-Contains the logic for placing orders.
+---
 
-Client Wrapper (client.py)
-Manages connection to the Binance Futures Testnet API.
+## Requirements
 
-Validators (validators.py)
-Ensures user inputs are valid before sending API requests.
+- Python 3.x
+- Binance Futures Testnet account
+- API Key and Secret
 
-Logging (logging_config.py)
-Logs API requests, responses, and errors.
+---
 
-Requirements
+## Installation
 
-Python 3.x
+**1. Clone the repository:**
 
-Binance Futures Testnet account
-
-API Key and Secret
-
-Installation
-
-Clone the repository:
-
+```bash
 git clone https://github.com/yourusername/trading-bot.git
 cd trading-bot
+```
 
-Install dependencies:
+**2. Install dependencies:**
 
+```bash
 pip install -r requirements.txt
-Environment Setup
+```
 
-Create a .env file in the project root:
+---
 
+## Environment Setup
+
+Create a `.env` file in the project root:
+
+```env
 API_KEY=your_api_key
 API_SECRET=your_secret_key
+```
 
-These credentials are used to authenticate with the Binance Futures Testnet API.
+> These credentials are used to authenticate with the Binance Futures Testnet API.
 
-Usage
+---
+
+## Usage
 
 The bot accepts the following CLI parameters:
 
-Parameter	Description
---symbol	Trading pair (e.g. BTCUSDT, ETHUSDT)
---side	Order side (BUY or SELL)
---type	Order type (MARKET or LIMIT)
---quantity	Quantity to trade
---price	Required only for LIMIT orders
-Example Commands
-MARKET Order
+| Parameter | Description |
+|---|---|
+| `--symbol` | Trading pair (e.g. `BTCUSDT`, `ETHUSDT`) |
+| `--side` | Order side (`BUY` or `SELL`) |
+| `--type` | Order type (`MARKET` or `LIMIT`) |
+| `--quantity` | Quantity to trade |
+| `--price` | Required only for LIMIT orders |
+
+### Example Commands
+
+**MARKET Order:**
+
+```bash
 python cli.py --symbol ETHUSDT --side BUY --type MARKET --quantity 0.05
-LIMIT Order
+```
+
+**LIMIT Order:**
+
+```bash
 python cli.py --symbol BTCUSDT --side SELL --type LIMIT --quantity 0.002 --price 80000
-Sample Output
+```
+
+### Sample Output
+
+```
 Order Request Summary
 ----------------------
-Symbol: ETHUSDT
-Side: BUY
-Type: MARKET
-Quantity: 0.05
+Symbol   : ETHUSDT
+Side     : BUY
+Type     : MARKET
+Quantity : 0.05
 
 Order Response
 ----------------------
-Order ID: 8479535465
-Status: NEW
-Executed Quantity: 0.000
-Average Price: 0.00
-Logging
+Order ID          : 8479535465
+Status            : NEW
+Executed Quantity : 0.000
+Average Price     : 0.00
+```
+
+---
+
+## Logging
 
 All API requests, responses, and errors are logged to:
 
+```
 trading_bot.log
+```
 
-Example log entry:
+**Example log entry:**
 
-INFO Order Request: {'symbol': 'ETHUSDT', 'side': 'BUY', 'type': 'MARKET', 'quantity': 0.05}
-INFO Order Response: {...}
-Error Handling
+```
+INFO  Order Request:  {'symbol': 'ETHUSDT', 'side': 'BUY', 'type': 'MARKET', 'quantity': 0.05}
+INFO  Order Response: {...}
+```
 
-The application handles:
+---
 
-Invalid order types
+## Error Handling
 
-Invalid order sides
+The application handles the following error cases:
 
-Invalid quantities
+- Invalid order types
+- Invalid order sides
+- Invalid quantities
+- Missing price for LIMIT orders
+- Binance API errors
+- Network failures
 
-Missing price for LIMIT orders
+---
 
-Binance API errors
+## Dependencies
 
-Network failures
-
-Dependencies
+```
 python-binance
 python-dotenv
+```
 
 Install using:
 
+```bash
 pip install -r requirements.txt
-Notes
+```
 
-The bot interacts with the Binance Futures Testnet, not the live trading environment.
+---
 
-Testnet funds are simulated and used only for testing.
+## Notes
 
-Author
+- The bot interacts with the **Binance Futures Testnet**, not the live trading environment.
+- Testnet funds are **simulated** and used only for testing purposes.
 
-Vishal Bhingarde
+---
 
-Python Developer Intern Application Task.
+## Author
+
+**Vishal Bhingarde**  
+*Python Developer Intern Application Task*
