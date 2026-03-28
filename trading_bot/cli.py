@@ -8,6 +8,8 @@ def main():
 
     setup_logging()
 
+    symbol = validate_symbol(args.symbol)
+    
     parser = argparse.ArgumentParser(description="Binance Futures Trading Bot")
 
     parser.add_argument("--symbol", required=True)
