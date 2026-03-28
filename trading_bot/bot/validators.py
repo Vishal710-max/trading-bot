@@ -4,6 +4,12 @@ def validate_side(side):
         raise ValueError("Side must be BUY or SELL")
     return side
 
+def validate_symbol(symbol: str):
+    if not symbol:
+        raise ValueError("Symbol cannot be empty")
+    return symbol.upper()
+
+
 
 def validate_order_type(order_type):
     order_type = order_type.upper()
