@@ -67,4 +67,10 @@ def main():
 
         print("\nUnexpected response from Binance.")
 if __name__ == "__main__":
-    main()
+    try:
+        main()   # or whatever your main function is
+    except ValueError as ve:
+        print(f"❌ Input Error: {ve}")
+    except Exception as e:
+        print("❌ Something went wrong. Please try again.")
+
